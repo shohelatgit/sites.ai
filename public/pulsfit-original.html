@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseFit - Premium Fitness Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff1493;
+            --primary-foreground: #ffffff;
+            --background: #0a0e27;
+            --surface: #1a1f3a;
+            --border: #2a3050;
+            --muted-foreground: #8b92b0;
+            --text: #e0e6ff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border);
+            background: var(--background);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), #ff3385);
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--background) 0%, var(--surface) 100%);
+            padding: 120px 24px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 8vw, 64px);
+            font-weight: bold;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, white, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--muted-foreground);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 24px;
+        }
+
+        section h2 {
+            font-size: clamp(28px, 6vw, 48px);
+            font-weight: bold;
+            margin-bottom: 48px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Programs Grid */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto 48px;
+        }
+
+        .program-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .program-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .program-card .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .program-card h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .program-card p {
+            color: var(--muted-foreground);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Trainers Section */
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .trainer-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .trainer-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.2);
+        }
+
+        .trainer-card .avatar {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary), #ff3385);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .trainer-card .content {
+            padding: 24px;
+        }
+
+        .trainer-card h3 {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .trainer-card p {
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        /* How It Works */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #ff3385);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
+        }
+
+        .step-card h3 {
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .step-card p {
+            color: var(--muted-foreground);
+            font-size: 14px;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 28px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.3);
+        }
+
+        .pricing-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card h3 {
+            font-size: 24px;
+            font-weight: bold;
+            text-center;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card .tag {
+            text-align: center;
+            color: var(--muted-foreground);
+            font-size: 12px;
+            margin-bottom: 16px;
+        }
+
+        .pricing-card .price {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 16px 0;
+        }
+
+        .pricing-card .price small {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 24px 0;
+            space: 12px;
+        }
+
+        .pricing-card li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .pricing-card li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+            width: 16px;
+        }
+
+        .pricing-card .button {
+            width: 100%;
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card.popular .button {
+            background: linear-gradient(135deg, var(--primary), #ff3385);
+            color: white;
+        }
+
+        .pricing-card:not(.popular) .button {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .pricing-card .button:hover {
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
+        }
+
+        /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-item .question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .faq-item .answer {
+            margin-top: 12px;
+            color: var(--muted-foreground);
+            font-size: 13px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.open .answer {
+            display: block;
+        }
+
+        /* Blog */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+        }
+
+        .blog-card .image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), #ff3385);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .blog-card .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .blog-card .content {
+            padding: 20px;
+        }
+
+        .blog-card h3 {
+            font-weight: bold;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .blog-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* CTA Banner */
+        .cta-section {
+            background: linear-gradient(to right, var(--background), transparent), linear-gradient(135deg, var(--primary), #ff3385);
+            background-attachment: fixed;
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(32px, 6vw, 56px);
+            margin-bottom: 32px;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            padding: 56px 24px 20px;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        footer h4 {
+            font-weight: bold;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 12px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 12px;
+        }
+
+        footer a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--muted-foreground);
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            section {
+                padding: 60px 24px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo">💪 PulseFit</div>
+            <nav>
+                <a href="#programs">Programs</a>
+                <a href="#trainers">Trainers</a>
+                <a href="#membership">Membership</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="cta-button">GET STARTED</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>TRANSFORM YOUR BODY IN 12 WEEKS</h1>
+        <p>Join thousands of members who've achieved their fitness goals with PulseFit's science-backed training programs</p>
+        <button class="cta-button">START YOUR JOURNEY</button>
+    </section>
+
+    <!-- Programs -->
+    <section id="programs">
+        <h2>OUR TRAINING PROGRAMS</h2>
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="icon">💪</div>
+                <h3>Strength Training</h3>
+                <p>Build muscle, level up strength and unlock your peak performance.</p>
+            </div>
+            <div class="program-card">
+                <div class="icon">❤️</div>
+                <h3>Cardio Fitness</h3>
+                <p>Boost endurance, burn calories and improve heart health.</p>
+            </div>
+            <div class="program-card">
+                <div class="icon">👤</div>
+                <h3>Personal Training</h3>
+                <p>1-on-1 coaching customized to your goals and lifestyle.</p>
+            </div>
+            <div class="program-card">
+                <div class="icon">👥</div>
+                <h3>Group Classes</h3>
+                <p>Fun, motivating classes for all fitness levels and goals.</p>
+            </div>
+            <div class="program-card">
+                <div class="icon">🥗</div>
+                <h3>Nutrition Plans</h3>
+                <p>Custom meal plans to fuel your body and mind.</p>
+            </div>
+            <div class="program-card">
+                <div class="icon">⚡</div>
+                <h3>Functional Training</h3>
+                <p>Improve movement, mobility and real-life strength.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers -->
+    <section id="trainers">
+        <h2>EXPERT TRAINERS</h2>
+        <div class="trainers-grid">
+            <div class="trainer-card">
+                <div class="avatar">👨‍🏫</div>
+                <div class="content">
+                    <h3>Alex Morgan</h3>
+                    <p>Strength Coach</p>
+                </div>
+            </div>
+            <div class="trainer-card">
+                <div class="avatar">👩‍🏫</div>
+                <div class="content">
+                    <h3>Sarah Chen</h3>
+                    <p>Cardio Specialist</p>
+                </div>
+            </div>
+            <div class="trainer-card">
+                <div class="avatar">👨‍⚕️</div>
+                <div class="content">
+                    <h3>Mike Johnson</h3>
+                    <p>Nutrition Expert</p>
+                </div>
+            </div>
+            <div class="trainer-card">
+                <div class="avatar">👩‍🏫</div>
+                <div class="content">
+                    <h3>Emma Davis</h3>
+                    <p>Yoga Instructor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <h2>HOW IT WORKS</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Sign Up</h3>
+                <p>Choose your membership plan and create your account</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Assess</h3>
+                <p>Get a fitness assessment from our expert trainers</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Train</h3>
+                <p>Start your personalized training program</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Transform</h3>
+                <p>Achieve your goals with our proven methods</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="membership">
+        <h2>REAL PEOPLE. REAL RESULTS.</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="tag">STARTER PLAN</div>
+                <div class="price">$29<small>/month</small></div>
+                <ul>
+                    <li>Gym Access</li>
+                    <li>Basic Equipment</li>
+                    <li>Locker Room</li>
+                </ul>
+                <button class="cta-button button">GET STARTED</button>
+            </div>
+            <div class="pricing-card popular">
+                <h3>Premium</h3>
+                <div class="tag">RECOMMENDED</div>
+                <div class="price">$59<small>/month</small></div>
+                <ul>
+                    <li>Unlimited Access</li>
+                    <li>Group Classes</li>
+                    <li>2 PT Sessions</li>
+                    <li>Nutrition Plan</li>
+                </ul>
+                <button class="cta-button button">GET STARTED</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Elite</h3>
+                <div class="tag">PREMIUM PLAN</div>
+                <div class="price">$99<small>/month</small></div>
+                <ul>
+                    <li>Premium Everything</li>
+                    <li>Unlimited PT</li>
+                    <li>Monthly Assessments</li>
+                    <li>Priority Booking</li>
+                </ul>
+                <button class="cta-button button">GET STARTED</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="background: var(--surface);">
+        <h2>FREQUENTLY ASKED QUESTIONS</h2>
+        <div class="faq-grid">
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="question">What is the cancellation policy? <span>+</span></div>
+                <div class="answer">You can cancel anytime with 30 days notice. No hidden fees or long-term contracts.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="question">Do you offer a free trial? <span>+</span></div>
+                <div class="answer">Yes! Get a 7-day free trial to experience all our facilities and classes.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="question">What if I'm a beginner? <span>+</span></div>
+                <div class="answer">Our trainers specialize in working with all fitness levels. We'll customize a program for you.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="question">Are nutrition plans included? <span>+</span></div>
+                <div class="answer">Nutrition plans are included with Premium and Elite memberships. Available separately for Basic.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="question">Can I bring a guest? <span>+</span></div>
+                <div class="answer">Yes! All members can bring a guest pass once per week with their membership.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="question">What amenities are available? <span>+</span></div>
+                <div class="answer">We offer locker rooms, showers, saunas, smoothie bar, and WiFi throughout the facility.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section>
+        <h2>FITNESS TIPS & RESOURCES</h2>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="image">
+                    <span class="tag">NUTRITION</span>
+                </div>
+                <div class="content">
+                    <h3>10 Superfoods to Boost Your Fitness</h3>
+                    <a href="#">READ MORE →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="image">
+                    <span class="tag">TRAINING</span>
+                </div>
+                <div class="content">
+                    <h3>The Science Behind High-Intensity Training</h3>
+                    <a href="#">READ MORE →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="image">
+                    <span class="tag">WELLNESS</span>
+                </div>
+                <div class="content">
+                    <h3>5 Recovery Techniques for Better Results</h3>
+                    <a href="#">READ MORE →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-section">
+        <h2>BE STRONGER THAN YOUR EXCUSES</h2>
+        <button class="cta-button">JOIN PULSFIT TODAY →</button>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div>
+                <div class="logo">💪 PulseFit</div>
+                <p style="margin-top: 16px; color: var(--muted-foreground); font-size: 14px;">Premium fitness. Proven results. Join the community. Elevate your life.</p>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">▶️</a>
+                    <a href="#">💼</a>
+                </div>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Programs</a></li>
+                    <li><a href="#">Trainers</a></li>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Programs</h4>
+                <ul>
+                    <li><a href="#">Strength Training</a></li>
+                    <li><a href="#">Cardio Fitness</a></li>
+                    <li><a href="#">Personal Training</a></li>
+                    <li><a href="#">Group Classes</a></li>
+                    <li><a href="#">Nutrition Plans</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Us</h4>
+                <ul style="font-size: 14px; color: var(--muted-foreground);">
+                    <li>📍 123 Fitness Way<br>New York, NY 10001</li>
+                    <li style="margin-top: 12px;">📞 (212) 555-7890</li>
+                    <li style="margin-top: 12px;">📧 info@pulsefit.com</li>
+                    <li style="margin-top: 12px;">⏰ Mon–Fri: 5AM–10PM<br>Sat–Sun: 7AM–7PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Pulse Fit. All Rights Reserved.</p>
+            <div style="display: flex; gap: 32px;">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
