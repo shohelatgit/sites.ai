@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "NextWave - Tech Startup",
+    "description": "Modern, responsive landing page for a tech startup with gradient design and feature showcase.",
+    "category": "Startup",
+    "price": 49,
+    "rating": 4.8,
+    "reviews": 12,
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop",
+    "previewUrl": "/sample-site.html",
+    "features": [
+      "Responsive Design",
+      "Modern UI",
+      "Feature Showcase",
+      "Call-to-Action Buttons"
+    ],
+    "tags": ["startup", "landing", "modern", "responsive"]
+  },
+  {
+    "id": 2,
+    "name": "Creative Portfolio",
+    "description": "Stunning portfolio website for creative professionals with gallery and work showcase.",
+    "category": "Portfolio",
+    "price": 39,
+    "rating": 4.9,
+    "reviews": 18,
+    "image": "https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=500&h=300&fit=crop",
+    "previewUrl": "/sample-site.html",
+    "features": [
+      "Image Gallery",
+      "Smooth Animations",
+      "Contact Form",
+      "Dark Mode"
+    ],
+    "tags": ["portfolio", "creative", "gallery"]
+  },
+  {
+    "id": 3,
+    "name": "E-Commerce Store",
+    "description": "Fully functional e-commerce template with product showcase and checkout flow.",
+    "category": "E-Commerce",
+    "price": 99,
+    "rating": 4.7,
+    "reviews": 25,
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=300&fit=crop",
+    "previewUrl": "/sample-site.html",
+    "features": [
+      "Product Catalog",
+      "Shopping Cart",
+      "Payment Integration",
+      "Order Tracking"
+    ],
+    "tags": ["ecommerce", "shop", "products"]
+  }
+]
