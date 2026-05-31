@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"npm run dev:pulsfit\"",
-    "dev:marketplace": "next dev",
-    "dev:pulsfit": "cd sites/pulsfit && npm run dev -- --port 3001 --host 0.0.0.0",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
