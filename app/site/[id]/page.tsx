@@ -150,23 +150,14 @@ export default function SiteDetail() {
               {/* Live Preview */}
               <div className="bg-white rounded-lg p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Live Preview</h2>
-                <button
-                  onClick={() => setShowPreview(!showPreview)}
-                  className="mb-4 px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                >
-                  {showPreview ? 'Hide Preview' : 'Show Live Preview'}
-                </button>
-
-                {showPreview && (
-                  <div className="border-2 border-gray-300 rounded-lg overflow-hidden">
-                    <iframe
-                      src={site.previewUrl}
-                      className="w-full h-96 border-none"
-                      title={`${site.name} preview`}
-                      sandbox="allow-same-origin allow-scripts"
-                    />
-                  </div>
-                )}
+                <div className="border-2 border-gray-300 rounded-lg overflow-hidden">
+                  <iframe
+                    src={site.previewUrl}
+                    className="w-full border-none"
+                    style={{ height: '600px' }}
+                    title={`${site.name} preview`}
+                  />
+                </div>
               </div>
             </div>
 

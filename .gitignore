@@ -39,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+sites/pulsfit/node_modules
+sites/pulsfit/dist
