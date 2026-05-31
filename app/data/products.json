@@ -28,5 +28,15 @@
     "screenshot": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop",
     "demoUrl": "/demos/ecommerce/index.html",
     "features": ["Product Grid", "Shopping Cart", "Search", "Filters"]
+  },
+  {
+    "id": 4,
+    "title": "PulseFit - Gym & Fitness",
+    "category": "Fitness",
+    "price": 79,
+    "description": "Professional gym landing page with programs, trainers, membership plans and more.",
+    "screenshot": "/demos/pulsfit/assets/hero-athlete-C36-72bG.jpg",
+    "demoUrl": "/demos/pulsfit/index.html",
+    "features": ["Training Programs", "Trainer Profiles", "Membership Plans", "FAQ & Blog", "Fully Responsive", "Dark Theme"]
   }
 ]
