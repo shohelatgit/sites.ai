@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Modern SaaS Landing",
+    "category": "SaaS",
+    "price": 49,
+    "description": "Beautiful SaaS landing page with dark theme",
+    "screenshot": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop",
+    "demoUrl": "/demos/saas-landing/index.html",
+    "features": ["Responsive Design", "Dark Theme", "CTA Buttons", "Pricing Table"]
+  },
+  {
+    "id": 2,
+    "title": "Portfolio Website",
+    "category": "Portfolio",
+    "price": 39,
+    "description": "Creative portfolio for designers and developers",
+    "screenshot": "https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=400&h=300&fit=crop",
+    "demoUrl": "/demos/portfolio/index.html",
+    "features": ["Gallery", "About Section", "Contact Form", "Smooth Animations"]
+  },
+  {
+    "id": 3,
+    "title": "E-Commerce Store",
+    "category": "E-Commerce",
+    "price": 79,
+    "description": "Full-featured e-commerce product listing",
+    "screenshot": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop",
+    "demoUrl": "/demos/ecommerce/index.html",
+    "features": ["Product Grid", "Shopping Cart", "Search", "Filters"]
+  }
+]

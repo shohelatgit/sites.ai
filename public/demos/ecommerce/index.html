@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopHub - E-Commerce Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            display: flex;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            border-right: none;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .icon-button:hover {
+            color: #ff6b6b;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        nav {
+            border-top: 1px solid #eee;
+            padding: 12px 0;
+            margin-top: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff6b6b;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: white;
+            color: #ff6b6b;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .filters-section {
+            background: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .products {
+            padding: 40px 0;
+        }
+
+        .products h2 {
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #ff6b6b15 0%, #ff878715 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #ff6b6b;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .product-rating {
+            color: #ffc107;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin-bottom: 12px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #ff5252;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .pagination button {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .pagination button.active {
+            background: #ff6b6b;
+            color: white;
+            border-color: #ff6b6b;
+        }
+
+        .pagination button:hover {
+            border-color: #ff6b6b;
+            color: #ff6b6b;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-content h4 {
+            margin-bottom: 15px;
+            color: #ff6b6b;
+        }
+
+        .footer-content ul {
+            list-style: none;
+        }
+
+        .footer-content li {
+            margin-bottom: 10px;
+        }
+
+        .footer-content a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-content a:hover {
+            color: #ff6b6b;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .search-bar {
+                max-width: 100%;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">🛍️ ShopHub</div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products...">
+                    <button>Search</button>
+                </div>
+                <div class="header-icons">
+                    <button class="icon-button">❤️</button>
+                    <button class="icon-button" style="position: relative;">
+                        🛒
+                        <span class="cart-badge">2</span>
+                    </button>
+                    <button class="icon-button">👤</button>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Electronics</a></li>
+                    <li><a href="#">Fashion</a></li>
+                    <li><a href="#">Home & Garden</a></li>
+                    <li><a href="#">Sports</a></li>
+                    <li><a href="#">Books</a></li>
+                    <li><a href="#">On Sale</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Summer Collection Sale</h1>
+                <p>Get up to 50% off on selected items</p>
+                <button class="cta-button">Shop Now</button>
+            </div>
+        </section>
+
+        <section class="products">
+            <div class="container">
+                <div class="filters-section">
+                    <h2>Featured Products</h2>
+                    <div style="margin-left: auto; display: flex; gap: 15px;">
+                        <div class="filter-group">
+                            <label>Sort by:</label>
+                            <select>
+                                <option>Latest</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Best Rating</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">📱</div>
+                        <div class="product-info">
+                            <div class="product-category">Electronics</div>
+                            <div class="product-name">Premium Headphones</div>
+                            <div class="product-rating">★★★★★ (245)</div>
+                            <div class="product-price">$89.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">👕</div>
+                        <div class="product-info">
+                            <div class="product-category">Fashion</div>
+                            <div class="product-name">Casual T-Shirt</div>
+                            <div class="product-rating">★★★★☆ (128)</div>
+                            <div class="product-price">$24.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">👜</div>
+                        <div class="product-info">
+                            <div class="product-category">Fashion</div>
+                            <div class="product-name">Designer Backpack</div>
+                            <div class="product-rating">★★★★★ (312)</div>
+                            <div class="product-price">$129.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">⌚</div>
+                        <div class="product-info">
+                            <div class="product-category">Accessories</div>
+                            <div class="product-name">Smart Watch</div>
+                            <div class="product-rating">★★★★★ (189)</div>
+                            <div class="product-price">$199.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">👟</div>
+                        <div class="product-info">
+                            <div class="product-category">Fashion</div>
+                            <div class="product-name">Running Shoes</div>
+                            <div class="product-rating">★★★★☆ (96)</div>
+                            <div class="product-price">$119.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">🎧</div>
+                        <div class="product-info">
+                            <div class="product-category">Electronics</div>
+                            <div class="product-name">Wireless Earbuds</div>
+                            <div class="product-rating">★★★★★ (523)</div>
+                            <div class="product-price">$69.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">🎒</div>
+                        <div class="product-info">
+                            <div class="product-category">Accessories</div>
+                            <div class="product-name">Travel Bag</div>
+                            <div class="product-rating">★★★★☆ (87)</div>
+                            <div class="product-price">$79.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">🧢</div>
+                        <div class="product-info">
+                            <div class="product-category">Fashion</div>
+                            <div class="product-name">Baseball Cap</div>
+                            <div class="product-rating">★★★★★ (156)</div>
+                            <div class="product-price">$29.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>Next →</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="#">About ShopHub</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Policies</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ShopHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Added to cart! 🛒');
+            });
+        });
+
+        document.querySelectorAll('.product-image').forEach(card => {
+            card.addEventListener('click', function() {
+                alert('Opening product details...');
+            });
+        });
+    </script>
+</body>
+</html>
